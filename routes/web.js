@@ -5,6 +5,7 @@ const authMiddleware = require('../middlewares/AuthMiddleware');
 const authValidator = require('../validators/AuthValidators');
 const homepageController = require('../controllers/HomepageController');
 const passport = require('passport');
+const mailController = require('../controllers/MailController');
 
 router.get('/', homepageController.index);
 
@@ -20,5 +21,7 @@ router.get('/auth/logout', (req, res) => {
 router.get('/protected', authMiddleware.isAuth, (req, res) => {
   res.send('Protected route, user correctly authenticated');
 })
+
+router.get('/send-mail', mailController.sendMail);
 
 module.exports = router;
